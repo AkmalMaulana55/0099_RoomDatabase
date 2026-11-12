@@ -15,7 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.act7.view.DestinasiEntry
+import com.example.act7.view.DestinasiHome
+import com.example.act7.view.EntrySiswaScreen
+import com.example.act7.view.HomeScreen
 
 @Composable
 fun SiswaApp(navController: NavHostController = rememberNavController()){
