@@ -1,4 +1,9 @@
 package com.example.act7.room
 
-class Siswa {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "tblSiswa")
+data class Siswa (
+    
+)
