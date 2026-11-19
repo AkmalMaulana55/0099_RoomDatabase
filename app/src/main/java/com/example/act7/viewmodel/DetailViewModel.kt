@@ -12,13 +12,14 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class DetailViewModel (
+class DetailViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repositoriSiswa: RepositoriSiswa) : ViewModel() {
+    private val repositoriSiswa: RepositoriSiswa
+) : ViewModel() {
 
     private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetailSiswa.itemIdArg])
 
-    val uiDetailSiswa: StateFlow<DetailSiswaUiState> =
+    val uiDetailState: StateFlow<DetailSiswaUiState> =
         repositoriSiswa.getSiswaStream(idSiswa)
             .filterNotNull()
             .map {
@@ -28,12 +29,13 @@ class DetailViewModel (
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = DetailSiswaUiState()
             )
+
     suspend fun deleteSiswa() {
-        repositoriSiswa.deleteSiswa(uiDetailSiswa.value.detailSiswa.toSiswa())
+        repositoriSiswa.deleteSiswa(uiDetailState.value.detailSiswa.toSiswa())
     }
 
     companion object {
-        private const val TIMEOUT_MILLIS = 5_00L
+        private const val TIMEOUT_MILLIS = 5_000L
     }
 }
 
